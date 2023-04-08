@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.23)
 project(SearchEngine VERSION 0.1)
 
+set(CMAKE_CXX_STANDARD 17)
+set(MY_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/include)
+
 include(FetchContent)
 include(GoogleTest)
 
@@ -20,16 +23,10 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-set(CMAKE_CXX_STANDARD 17)
-
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 add_subdirectory(nlohmann_json)
-
-add_executable(SearchEngine main.cpp ConverterJSON.cpp ConverterJSON.h EngineExceptions.h version.h EngineExceptions.cpp)
+add_subdirectory(src)
+add_subdirectory(tests)
 
 target_link_libraries(SearchEngine PRIVATE nlohmann_json::nlohmann_json)
-
-target_link_libraries(SearchEngine PRIVATE gtest_main)
-
-gtest_discover_tests(SearchEngine)
