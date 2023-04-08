@@ -6,7 +6,7 @@
 #define SEARCH_ENGINE_CONVERTERJSON_H
 #include <string>
 #include <vector>
-#include "../nlohmann_json/include/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 
 class ConverterJSON
 {
@@ -27,11 +27,11 @@ private:
 public:
     ConverterJSON();
     ~ConverterJSON() = default;
-    std::vector<std::string> GetTextDocuments();
-    std::string GetProgramName() const;
-    std::string GetProgramVersion() const;
-    int GetResponsesLimit() const;
-    std::vector<std::string> GetRequests();
+    std::vector<std::string> getTextDocuments();
+    std::string getProgramName() const;
+    std::string getProgramVersion() const;
+    int getResponsesLimit() const;
+    std::vector<std::string> getRequests();
     void putAnswers(const std::vector<std::vector<std::pair<int, float>>> &answers);
 };
 
