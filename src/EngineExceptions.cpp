@@ -2,7 +2,7 @@
 // Created by teena on 03.04.2023.
 //
 
-#include "EngineExceptions.h"
+#include "../include/EngineExceptions.h"
 
 const char* ConfigFileMissingException::what() const noexcept
 {

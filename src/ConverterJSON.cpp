@@ -14,7 +14,7 @@ ConverterJSON::ConverterJSON()
     this->readRequestsJSON();
 }
 
-std::vector<std::string> ConverterJSON::GetTextDocuments()
+std::vector<std::string> ConverterJSON::getTextDocuments()
 {
     std::vector<std::string> textDocuments;
     for (int i = 0; i < this->configJSON.filePaths.size(); ++i)
@@ -35,12 +35,12 @@ std::vector<std::string> ConverterJSON::GetTextDocuments()
     return textDocuments;
 }
 
-int ConverterJSON::GetResponsesLimit() const
+int ConverterJSON::getResponsesLimit() const
 {
     return this->configJSON.config.maxResponses;
 }
 
-std::vector<std::string> ConverterJSON::GetRequests()
+std::vector<std::string> ConverterJSON::getRequests()
 {
     return this->requestsJSON;
 }
@@ -48,7 +48,7 @@ std::vector<std::string> ConverterJSON::GetRequests()
 void ConverterJSON::putAnswers(const std::vector<std::vector<std::pair<int, float>>> &answers)
 {
     nlohmann::json jsonAnswers;
-    std::ofstream answersFile("../config/answers.json");
+    std::ofstream answersFile("../../config/answers.json");
     int requestInd = 1;
     for (const auto& pairVec : answers)
     {
@@ -77,12 +77,23 @@ void ConverterJSON::putAnswers(const std::vector<std::vector<std::pair<int, floa
     answersFile.close();
 }
 
+std::string ConverterJSON::getProgramName() const
+{
+    return this->configJSON.config.name;
+}
+
+std::string ConverterJSON::getProgramVersion() const
+{
+    return this->configJSON.config.version;
+}
+
+// метод, считывающий данные из "сonfig.json" в структуру configJSON
 void ConverterJSON::readConfigJSON()
 {
     nlohmann::json jsonConfig;
     try
     {
-        std::ifstream configFile("../config/config.json");
+        std::ifstream configFile("../../config/config.json");
         if (!configFile.is_open())
             throw ConfigFileMissingException();
         configFile >> jsonConfig;
@@ -111,12 +122,13 @@ void ConverterJSON::readConfigJSON()
         this->configJSON.filePaths.emplace_back(it.value());
 }
 
+// метод, считывающий запросы из "requests.json" в вектор строк requestsJSON
 void ConverterJSON::readRequestsJSON()
 {
     nlohmann::json jsonRequests;
     try
     {
-        std::ifstream requestsFile("../config/requests.json");
+        std::ifstream requestsFile("../../config/requests.json");
         if (!requestsFile.is_open())
             throw RequestsFileMissingException();
         requestsFile >> jsonRequests;
@@ -130,14 +142,5 @@ void ConverterJSON::readRequestsJSON()
         this->requestsJSON.emplace_back(it.value());
 }
 
-std::string ConverterJSON::GetProgramName() const
-{
-    return this->configJSON.config.name;
-}
-
-std::string ConverterJSON::GetProgramVersion() const
-{
-    return this->configJSON.config.version;
-}
 
 
