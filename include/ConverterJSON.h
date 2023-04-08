@@ -6,7 +6,7 @@
 #define SEARCH_ENGINE_CONVERTERJSON_H
 #include <string>
 #include <vector>
-#include "nlohmann/json.hpp"
+#include "../nlohmann_json/include/nlohmann/json.hpp"
 
 class ConverterJSON
 {
