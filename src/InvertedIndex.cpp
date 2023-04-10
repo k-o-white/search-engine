@@ -5,14 +5,14 @@
 #include <algorithm>
 #include "InvertedIndex.h"
 
+std::mutex indexation_status;
+
 void InvertedIndex::updateDocumentBase(std::vector<std::string> inputDocs)
 {
    for (const auto &doc : inputDocs)
        docs.push_back(doc);
    freqDictionary.clear();
-   std::map<std::string, std::vector<Entry>> newFreqDictionary;
    std::vector <std::thread> indexationThreads;
-
    for (int index = 0; index < docs.size(); ++index)
    {
        indexationThreads.emplace_back(std::thread([this, index]()
@@ -26,7 +26,6 @@ void InvertedIndex::updateDocumentBase(std::vector<std::string> inputDocs)
                {
                    if (it->first == word)
                    {
-                       indexation.lock();
                        foundWord = true;
                        bool foundDocId = false;
                        for (int i = 0; i < it->second.size() && !foundDocId; ++i)
@@ -43,16 +42,13 @@ void InvertedIndex::updateDocumentBase(std::vector<std::string> inputDocs)
                            it->second.push_back(newEntry);
                            std::sort(it->second.begin(), it->second.end(), Entry::compare);
                        }
-                       indexation.unlock();
                    }
                }
                if (!foundWord)
                {
-                   indexation.lock();
                    Entry newEntry{static_cast<size_t>(index), 1};
                    freqDictionary.insert
                         (std::pair<std::string, std::vector<Entry>>(word, std::vector<Entry>{newEntry}));
-                   indexation.unlock();
                }
            }
        }));
@@ -64,6 +60,11 @@ void InvertedIndex::updateDocumentBase(std::vector<std::string> inputDocs)
 
 std::vector<Entry> InvertedIndex::getWordCount(const std::string &word)
 {
-    return std::vector<Entry>();
+    for (auto &pair : freqDictionary)
+    {
+        if (pair.first == word)
+            return pair.second;
+    }
+    return std::vector<Entry>{};
 }
 
