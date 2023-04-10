@@ -3,6 +3,7 @@ project(SearchEngine VERSION 0.1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(MY_INCLUDE_PATH ${CMAKE_SOURCE_DIR}/include)
+set(MY_SOURCE_PATH ${CMAKE_SOURCE_DIR}/src)
 
 include(FetchContent)
 include(GoogleTest)
