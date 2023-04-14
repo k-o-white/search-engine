@@ -5,10 +5,11 @@ add_executable(SearchEngine
         ConverterJSON.cpp
         EngineExceptions.cpp
         InvertedIndex.cpp
+        SearchServer.cpp
         ${MY_INCLUDE_PATH}/ConverterJSON.h
         ${MY_INCLUDE_PATH}/EngineExceptions.h
         ${MY_INCLUDE_PATH}/InvertedIndex.h
         ${MY_INCLUDE_PATH}/version.h
-        )
+        ${MY_INCLUDE_PATH}/SearchServer.h)
 
 target_include_directories(SearchEngine PUBLIC ${MY_INCLUDE_PATH})
