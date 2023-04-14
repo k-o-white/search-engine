@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.23)
 
 add_executable(GTests
-        test.cpp
+        InvertedIndexTests.cpp
+        SearchServerTests.cpp
         ${MY_SOURCE_PATH}/InvertedIndex.cpp
         ${MY_INCLUDE_PATH}/InvertedIndex.h
+        ${MY_SOURCE_PATH}/SearchServer.cpp
+        ${MY_INCLUDE_PATH}/SearchServer.h
         )
 
 target_link_libraries(GTests gtest_main)
