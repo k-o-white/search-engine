@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <thread>
+#include <algorithm>
 #include <mutex>
 
 
@@ -20,7 +21,7 @@ struct Entry
         return (doc_id == other.doc_id && count == other.count);
     }
 
-    static bool compare(Entry &a, Entry &b)
+    static bool compareDocId(Entry &a, Entry &b)
     {
         return a.doc_id < b.doc_id;
     }
@@ -29,17 +30,23 @@ struct Entry
 class InvertedIndex
 {
 private:
-    std::vector<std::string> docs; // список содержимого документов
-    std::map<std::string, std::vector<Entry>> freqDictionary; // частотный словарь
+    std::vector <std::string> docs; // список содержимого документов
+    std::map <std::string, std::vector<Entry>> freqDictionary; // частотный словарь
 public:
     InvertedIndex() = default;
+
+    ~InvertedIndex() = default;
+
+    std::map <std::string, std::vector<Entry>>* getFreqDictionary();
+
+    int getDocsCount();
 /* Обновить или заполнить базу документов, по которой будем совершать
  * поиск @param texts_input содержимое документов
 */
-    void updateDocumentBase(std::vector<std::string> input_docs);
+    void updateDocumentBase(const std::vector<std::string> &inputDocs);
 /*Метод определяет количество вхождений слова word в загруженной базе документов
 * @param word слово, частоту вхождений которого необходимо определить
 * @return возвращает подготовленный список с частотой слов
 */
-    std::vector<Entry> getWordCount(const std::string& word);
+    std::vector<Entry> getWordCount(const std::string &word);
 };
