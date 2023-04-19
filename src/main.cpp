@@ -11,7 +11,7 @@ int main()
     std::cout << converter->getProgramName() << "" << std::endl;
     std::cout << "Version: " << converter->getProgramVersion() << "" << std::endl;
     invIndex->updateDocumentBase(converter->getTextDocuments());
-    auto* searchServer = new SearchServer(invIndex);
+    auto* searchServer = new SearchServer(invIndex, converter->getResponsesLimit());
     auto result = searchServer->search(converter->getRequests());
 
     std::vector <std::vector <std::pair <int, float>>> answersToJSON;
