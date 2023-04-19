@@ -23,6 +23,7 @@ class SearchServer
 {
 private:
     InvertedIndex* index;
+    int responsesLimit;
 public:
 /**
 * @param idx в конструктор класса передаётся ссылка на класс
@@ -30,7 +31,7 @@ InvertedIndex,
 * чтобы SearchServer мог узнать частоту слов встречаемых в
 запросе
 */
-    explicit SearchServer(InvertedIndex* idx) : index(idx) {};
+    SearchServer(InvertedIndex* idx, int rLimit) : index(idx), responsesLimit(rLimit) {};
 
     ~SearchServer() = default;
 /**

@@ -72,8 +72,12 @@ std::vector <std::vector <RelativeIndex>> SearchServer::search(const std::vector
         }
         std::sort(requestResult.begin(), requestResult.end(), [](RelativeIndex &a, RelativeIndex &b)
         {
-            return a.rank > b.rank;
+            return (a.rank > b.rank || (a.rank == b.rank && a.docId < b.docId));
         });
+        while (requestResult.size() > this->responsesLimit)
+        {
+            requestResult.pop_back();
+        }
         finalResult.emplace_back(requestResult);
     }
     return finalResult;
