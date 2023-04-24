@@ -58,19 +58,19 @@
         </blockquote>
         <blockquote>
             <code>
-                {
-                    "config": {
-                        "name": "Search Engine",
-                        "version": "0.1",
-                        "max_responses": 5
-                    },
-                    "files": [
-                        "../resources/file001.txt",
-                        "../resources/file002.txt",
-                        "../resources/file003.txt",
-                        "../resources/file004.txt"
-                    ]
-                }
+            {
+                "config": {
+                    "name": "Search Engine",
+                    "version": "0.1",
+                    "max_responses": 5
+                },
+                "files": [
+                    "../resources/file001.txt",
+                    "../resources/file002.txt",
+                    "../resources/file003.txt",
+                     "../resources/file004.txt"
+                ]
+            }
             </code>
         </blockquote>
     </li>
