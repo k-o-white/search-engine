@@ -21,5 +21,5 @@ const char *IncorrectVersionException::what() const noexcept
 
 const char *RequestsFileMissingException::what() const noexcept
 {
-    return "Config file is missing.";
+    return "Requests file is missing.";
 }
