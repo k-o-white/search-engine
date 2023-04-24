@@ -69,6 +69,17 @@
     ]
 }</code>
         </blockquote>
+        <h3>requests.json</h3>
+        <blockquote>
+            <code>{
+    "requests": [
+        "word",
+        "one more word",
+        "another word",
+        "too many words"
+    ]
+}</code>
+        </blockquote>
     </li>
     <li>
         After running the app object of "ConverterJSON" class will be looking for "config.json" and "requests.json" files and will try to serialize them. If "config.json" or "requests.json" are missing or "config.json" is empty or programm version in "config.json" doesn't match with actual version, the engine will throw appropriate exception, else it will get required data to the private field of object such as text file paths and requests' strings.</li>
