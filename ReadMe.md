@@ -53,9 +53,7 @@
     <li>
         Before launching the app it's necessary to put text files paths you wanted to this engine for search by the "files" key of "config.json" file and your queries to "requests.json" file.<br/>
         For example:
-        <blockquote>
-            config.json
-        </blockquote>
+        <h3>config.json</h3>
         <blockquote>
             <code>
             {
