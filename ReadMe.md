@@ -66,7 +66,7 @@
                     "../resources/file001.txt",
                     "../resources/file002.txt",
                     "../resources/file003.txt",
-                     "../resources/file004.txt"
+                    "../resources/file004.txt"
                 ]
             }
             </code>
