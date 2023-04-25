@@ -5,11 +5,11 @@
 <h2>This project was created using the following technologies</h2>
 
 <ul>
-    <li><a href="#">C++17</a></li>
-    <li><a href="#">CMake 3.23.2</a></li>
-    <li><a href="#">Nlohmann JSON Library</a></li>
-    <li><a href="#">GoogleTest Framework</a></li>
-    <li><a href="#">MinGW w64 9.0</a></li>
+    <li><a href="https://en.cppreference.com/w/cpp/17#">C++17</a></li>
+    <li><a href="https://cmake.org/cmake/help/latest/index.html">CMake 3.26.3</a></li>
+    <li><a href="https://github.com/nlohmann/json">Nlohmann JSON Library</a></li>
+    <li><a href="https://github.com/google/googletest">GoogleTest Framework</a></li>
+    <li><a href="https://www.mingw-w64.org/">MinGW w64 10.0.0</a></li>
 </ul>
 
 <h2>How to build and run this app</h2>
