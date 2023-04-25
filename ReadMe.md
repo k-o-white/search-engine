@@ -84,7 +84,7 @@
     <li>
         After running the app object of "ConverterJSON" class will be looking for "config.json" and "requests.json" files and will try to serialize them. If "config.json" or "requests.json" are missing or "config.json" is empty or programm version in "config.json" doesn't match with actual version, the engine will throw appropriate exception, else it will get required data to the private field of object such as text file paths and requests' strings.</li>
     <li>
-        Then "InvertedIndex" class' object will parse .txt files from paths that "ConverterJSON" object got from "config.json" file to unique words and will count the number of entries of each word in eacg file.
+        Then "InvertedIndex" class' object will parse .txt files from paths that "ConverterJSON" object got from "config.json" file to unique words and will count the number of entries of each word in each file.
     </li>
     <li>
         Finally "SearchServer" object will calculate the relative relevance for each requests in each file and counting results will be put in "answers.json" file.
