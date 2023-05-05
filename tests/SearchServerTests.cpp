@@ -78,3 +78,125 @@ TEST(TestCaseSearchServer, TestTop5)
     std::vector<std::vector <RelativeIndex>> result = srv.search(request);
     ASSERT_EQ(result, expected);
 }
+
+TEST(TestCaseSearchServer, TestHobbit)
+{
+    const std::vector <std::string> docs =
+    {
+            "In a hole in the ground there lived a hobbit",
+            "the mother of our particular hobbit what is a hobbit",
+            "the mother of this hobbit was the fabulous belladonna took",
+            "this hobbit was named bilbo baggins",
+            "good morning said bilbo and he meant it",
+            "the next day he had almost forgotten about gandalf"
+    };
+    const std::vector <std::string> request =
+    {
+            "this hobbit is bilbo",
+            "his mother is the belladonna took",
+            "gandalf"
+    };
+    const std::vector<std::vector <RelativeIndex>> expected =
+    {
+            {
+                    {1, 1},
+                    {3, 1},
+                    {2, 0.666666687},
+                    {0, 0.333333343},
+                    {4, 0.333333343}
+            },
+            {
+                    {2, 1},
+                    {1, 0.6},
+                    {0, 0.2},
+                    {5, 0.2}
+            },
+            {
+                    {5, 1}
+            }
+    };
+    InvertedIndex idx;
+    idx.updateDocumentBase(docs);
+
+    SearchServer srv(&idx, 5);
+    std::vector<std::vector <RelativeIndex>> result = srv.search(request);
+    ASSERT_EQ(result, expected);
+}
+
+TEST(TestCaseSearchServer, TestSongsStrings)
+{
+    const std::vector <std::string> docs =
+    {
+            "come to me now don't let me go stay by my side don't let me go",
+            "i hope you never let me down again",
+            "bring me back to life never let me go",
+            "never never let you go you are the one i'm searching for",
+            "don't let me down don't let me down",
+            "don't let me go little darling",
+            "never gonna give you up never gonna let you down",
+            "let go let go let go let go"
+    };
+    const std::vector <std::string> request =
+    {
+            "never let me down",
+            "never let me go",
+            "don't let me down",
+            "don't let me go"
+    };
+    const std::vector<std::vector <RelativeIndex>> expected =
+    {
+            {
+                {4, 1},
+                {0, 0.833333313},
+                {1, 0.666666687}
+            },
+            {
+                {7, 1},
+                {0, 0.875},
+                {2, 0.625}
+            },
+            {
+                {4, 1},
+                {0, 0.875},
+                {7, 0.5}
+            },
+            {
+                {0, 1},
+                {7, 0.888888896},
+                {4, 0.666666687}
+            }
+    };
+    InvertedIndex idx;
+    idx.updateDocumentBase(docs);
+
+    SearchServer srv(&idx, 3);
+    std::vector<std::vector <RelativeIndex>> result = srv.search(request);
+    ASSERT_EQ(result, expected);
+}
+
+TEST(TestCaseSearchServer, TestEmptyResult)
+{
+    const std::vector <std::string> docs =
+    {
+            "joy division new order",
+            "metallica megadeth anthrax slayer",
+            "nirvana pearl jam alice in chains soundgarden",
+            "oasis blur pulp suede"
+    };
+    const std::vector <std::string> request =
+    {
+            "aphex twin",
+            "depeche mode",
+            "placebo"
+    };
+    const std::vector<std::vector <RelativeIndex>> expected =
+    {
+            {}, {}, {}
+    };
+    InvertedIndex idx;
+    idx.updateDocumentBase(docs);
+
+    SearchServer srv(&idx, 5);
+    std::vector<std::vector <RelativeIndex>> result = srv.search(request);
+    ASSERT_EQ(result, expected);
+}
