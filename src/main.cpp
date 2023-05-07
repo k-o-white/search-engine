@@ -5,7 +5,6 @@
 
 int main()
 {
-    std::cout << "Search Engine is under development." << std::endl;
     auto* converter = new ConverterJSON();
     auto* invIndex = new InvertedIndex();
     std::cout << converter->getProgramName() << "" << std::endl;
