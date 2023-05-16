@@ -38,15 +38,7 @@ public:
     ~InvertedIndex() = default;
 
     std::map <std::string, std::vector<Entry>>* getFreqDictionary();
-
     int getDocsCount();
-/* Обновить или заполнить базу документов, по которой будем совершать
- * поиск @param texts_input содержимое документов
-*/
     void updateDocumentBase(const std::vector<std::string> &inputDocs);
-/*Метод определяет количество вхождений слова word в загруженной базе документов
-* @param word слово, частоту вхождений которого необходимо определить
-* @return возвращает подготовленный список с частотой слов
-*/
     std::vector<Entry> getWordCount(const std::string &word);
 };
