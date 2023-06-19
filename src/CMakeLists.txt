@@ -13,3 +13,6 @@ add_executable(SearchEngine
         ${MY_INCLUDE_PATH}/SearchServer.h)
 
 target_include_directories(SearchEngine PUBLIC ${MY_INCLUDE_PATH})
+
+file(COPY ../config DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY ../resources DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
